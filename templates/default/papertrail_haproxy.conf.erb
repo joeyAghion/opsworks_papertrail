@@ -1,0 +1,7 @@
+# Adapted from http://kvz.io/blog/2010/08/11/haproxy-logging/
+
+$ModLoad imudp
+$UDPServerAddress 127.0.0.1
+$UDPServerRun 514
+local1.* @<%= @destination %>
+& ~

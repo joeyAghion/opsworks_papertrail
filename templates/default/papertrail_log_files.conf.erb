@@ -1,0 +1,21 @@
+# See https://papertrailapp.tenderapp.com/kb/configuration/advanced-unix-logging-tips#rsyslog_aggregate_log_files
+
+# load module to read from local files
+$ModLoad imfile
+
+
+# for each local log file path, repeat these 4 lines and edit lines 1-2
+<% @log_files.each do |tag, path| %>
+
+$InputFileName <%= path %>
+$InputFileTag <%= tag %>:
+$InputFileStateFile papertrail-<%= tag %>
+$InputRunFileMonitor
+
+<% end %>
+
+
+# destination (see https://papertrailapp.com/systems/setup)
+*.*  @<%= @destination %>
+# for clarity, explicitly discard everything (this is typically not necessary)
+*.*  ~
