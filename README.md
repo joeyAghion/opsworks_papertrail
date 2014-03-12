@@ -34,4 +34,9 @@ Example of custom stack JSON:
     }
 
 
+### Caveats
+
+If you use the `opsworks_papertrail::log_files` recipe to monitor rails/unicorn logs, you may find that papertrail stops receiving those messages after logs are rotated. This is due to conflicts between rsyslog's offset-based file-monitoring and logrotate's `copytruncate` command. To fix, supply a custom recipe that overrides the default opsworks logrotate template (removing `copytruncate` and forcing unicorn to reopen logs upon rotation), as documented in [#1](https://github.com/joeyAghion/opsworks_papertrail/issues/1).
+
+
 &copy; [Joey Aghion](http://joey.aghion.com), [Artsy](http://artsy.net). See [LICENSE](LICENSE) for details.
