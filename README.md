@@ -1,3 +1,5 @@
+**This cookbook is no longer actively maintained. I recommend [remote_syslog2](https://github.com/trappar/remote_syslog2-cookbook) instead.**
+
 ## opsworks_papertrail
 
 Custom cookbook for configuring OpsWorks instances to send logs to papertrail.
